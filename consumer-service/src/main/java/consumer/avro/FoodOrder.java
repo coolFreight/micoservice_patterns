@@ -2,7 +2,9 @@ package consumer.avro;
 
 import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;
+import io.micronaut.data.annotation.Relation;
 
+import java.util.List;
 import java.util.Objects;
 
 @MappedEntity
@@ -15,10 +17,14 @@ public class FoodOrder {
 
     private String name;
 
-    public FoodOrder(String status, String orderId, String name) {
+    @Relation(value = Relation.Kind.ONE_TO_MANY, cascade = Relation.Cascade.PERSIST, mappedBy = "foodOrder")
+    private List<OrderItem> orderItems;
+
+    public FoodOrder(String status, String orderId, String name, List<OrderItem> orderItems) {
         this.status = status;
         this.orderId = orderId;
         this.name = name;
+        this.orderItems = orderItems;
     }
 
     public String getStatus() {
@@ -31,6 +37,10 @@ public class FoodOrder {
 
     public String getName() {
         return name;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
     @Override
@@ -53,4 +63,6 @@ public class FoodOrder {
     public int hashCode() {
         return Objects.hash(orderId, status, name);
     }
+
+
 }

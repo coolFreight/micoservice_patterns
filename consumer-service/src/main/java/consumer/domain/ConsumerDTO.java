@@ -41,4 +41,13 @@ public class ConsumerDTO {
     public int hashCode() {
         return Objects.hash(name, status, orderId);
     }
+
+    @Override
+    public String toString() {
+        return "ConsumerDTO{" +
+                "name='" + name + '\'' +
+                ", status=" + status +
+                ", orderId='" + orderId + '\'' +
+                '}';
+    }
 }

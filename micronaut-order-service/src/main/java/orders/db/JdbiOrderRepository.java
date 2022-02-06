@@ -1,5 +1,7 @@
 package orders.db;
 
+import orders.api.FoodOrder;
+import orders.api.OrderItem;
 import org.jdbi.v3.sqlobject.customizer.BindBean;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 import org.jdbi.v3.sqlobject.transaction.Transaction;

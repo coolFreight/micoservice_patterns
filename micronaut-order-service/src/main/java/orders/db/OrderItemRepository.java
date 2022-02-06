@@ -2,6 +2,7 @@ package orders.db;
 
 import io.micronaut.core.annotation.NonNull;
 import io.micronaut.data.annotation.Id;
+import orders.api.OrderItem;
 
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotBlank;

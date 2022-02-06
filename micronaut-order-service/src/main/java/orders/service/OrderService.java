@@ -2,9 +2,9 @@ package orders.service;
 
 
 import orders.api.OrderRequest;
-import orders.db.FoodOrder;
+import orders.api.FoodOrder;
 import orders.db.JdbiOrderRepository;
-import orders.db.OrderItem;
+import orders.api.OrderItem;
 import orders.messaging.OrderPublisher;
 import org.slf4j.LoggerFactory;
 

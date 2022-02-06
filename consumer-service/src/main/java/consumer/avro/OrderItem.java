@@ -1,8 +1,6 @@
-package orders.db;
+package consumer.avro;
 
 import io.micronaut.data.annotation.MappedEntity;
-
-import java.util.UUID;
 
 @MappedEntity
 public class OrderItem {

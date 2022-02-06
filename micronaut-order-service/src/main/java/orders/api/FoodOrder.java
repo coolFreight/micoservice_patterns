@@ -1,4 +1,4 @@
-package orders.db;
+package orders.api;
 
 import io.micronaut.data.annotation.Id;
 import io.micronaut.data.annotation.MappedEntity;
@@ -56,8 +56,6 @@ public class FoodOrder {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FoodOrder foodOrder = (FoodOrder) o;
-//        JdbiFactory f = new JdbiFactory();
-
         return Objects.equals(orderId, foodOrder.orderId) && Objects.equals(status, foodOrder.status) && Objects.equals(name, foodOrder.name);
     }
 
