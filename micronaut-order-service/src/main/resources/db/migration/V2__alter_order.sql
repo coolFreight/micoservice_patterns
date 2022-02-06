@@ -1,0 +1,1 @@
+ALTER TABLE IF EXISTS food_order ADD COLUMN IF NOT EXISTS name varchar;

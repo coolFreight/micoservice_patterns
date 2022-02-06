@@ -1,0 +1,29 @@
+micronaut:
+  application:
+    name: orderService
+  server:
+    port: 8888
+datasources:
+  default:
+    url: ${JDBC_URL}
+    username: ${JDBC_USER}
+    password: ${JDBC_PASSWORD}
+    driverClassName: ${JDBC_DRIVER}
+flyway:
+  datasources:
+    default:
+      enabled: true
+
+jackson:
+  serializationInclusion: ALWAYS
+
+kafka:
+  bootstrap:
+    servers: localhost:9093
+  acks: all
+  key.serializer: org.apache.kafka.common.serialization.StringSerializer
+  value.serializer: orders.messaging.OrderSerializer
+  max.block.ms: 1000
+
+
+
