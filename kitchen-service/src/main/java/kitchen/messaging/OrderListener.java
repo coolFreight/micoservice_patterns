@@ -1,16 +1,16 @@
 package kitchen.messaging;
 
-import io.micronaut.configuration.kafka.annotation.KafkaClient;
 import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.KafkaListener;
 import io.micronaut.configuration.kafka.annotation.Topic;
 import kitchen.avro.FoodOrder;
+import kitchen.domain.KitchenTicket;
 import kitchen.service.KitchenService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @KafkaListener(
-        groupId = "consumer-orders"
+        groupId = "kitchen-orders"
 )
 public class OrderListener {
     Logger LOGGER = LoggerFactory.getLogger(OrderListener.class);
@@ -25,7 +25,8 @@ public class OrderListener {
     @Topic("orders")
     public void receive(@KafkaKey String key,
                         FoodOrder order) {
-//        LOGGER.info("Consumer verified: {} ", KitchenService.validateOrder();
+        LOGGER.info("Received an order for : {} ", order);
+        kitchenService.createTicket(new KitchenTicket(order.getOrderId()));
     }
 
 }

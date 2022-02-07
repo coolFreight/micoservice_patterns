@@ -29,7 +29,16 @@ dependencies {
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut:micronaut-validation")
 
+    //database dependencies
     runtimeOnly("org.postgresql:postgresql")
+    implementation("io.micronaut.sql:micronaut-jdbi")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation('org.jdbi:jdbi3-sqlobject:3.20.1')
+            { exclude group: "com.github.ben-manes.caffeine" }
+    implementation(group: 'org.jdbi', name: 'jdbi3-postgres', version: '3.20.1')
+            { exclude group: "com.github.ben-manes.caffeine" }
+
+    implementation group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: '2.28'
 }
 
 

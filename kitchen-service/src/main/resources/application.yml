@@ -1,8 +1,6 @@
 micronaut:
   application:
     name: kitchenService
-  server:
-    port: 8889
 
 datasources:
   default:
@@ -17,4 +15,8 @@ kafka:
   key.serializer: org.apache.kafka.common.serialization.StringSerializer
   value.serializer: orders.messaging.OrderSerializer
   max.block.ms: 1000
+flyway:
+  datasources:
+    default:
+      enabled: true
 

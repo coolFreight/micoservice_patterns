@@ -15,7 +15,7 @@ micronaut {
     testRuntime("junit5")
     processing {
         incremental(true)
-        annotations("accounting.service.*")
+        annotations("accounting.*")
     }
 }
 
@@ -27,15 +27,20 @@ dependencies {
     implementation("io.micronaut:micronaut-validation")
 
     implementation("io.micronaut.kafka:micronaut-kafka")
-    implementation("io.micronaut.flyway:micronaut-flyway")
-    implementation("io.micronaut.data:micronaut-data-jdbc")
-    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
 
+    //database dependencies
     runtimeOnly("org.postgresql:postgresql")
+    implementation("io.micronaut.data:micronaut-data-jdbc")
+    implementation("io.micronaut.sql:micronaut-jdbi")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+    implementation('org.jdbi:jdbi3-sqlobject:3.20.1')
+            { exclude group: "com.github.ben-manes.caffeine" }
+    implementation(group: 'org.jdbi', name: 'jdbi3-postgres', version: '3.20.1')
+            { exclude group: "com.github.ben-manes.caffeine" }
+    implementation("io.micronaut.flyway:micronaut-flyway")
 
     implementation("jakarta.annotation:jakarta.annotation-api")
     runtimeOnly("ch.qos.logback:logback-classic")
-    implementation 'org.jdbi:jdbi3-core:3.27.1'
     implementation 'org.apache.commons:commons-dbcp2:2.9.0'
 }
 

@@ -7,13 +7,10 @@ import org.junit.jupiter.api.Assertions;
 
 import jakarta.inject.Inject;
 
-@MicronautTest
 class AccountingServiceTest {
 
-    @Inject
     EmbeddedApplication<?> application;
 
-    @Test
     void testItWorks() {
         Assertions.assertTrue(application.isRunning());
     }

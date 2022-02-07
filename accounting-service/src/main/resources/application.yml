@@ -1,6 +1,8 @@
 micronaut:
   application:
     name: accountingService
+  server:
+    port: 8900
 
 datasources:
   default:
@@ -8,6 +10,7 @@ datasources:
     username: ${JDBC_USER}
     password: ${JDBC_PASSWORD}
     driverClassName: ${JDBC_DRIVER}
+
 flyway:
   datasources:
     default:
@@ -18,5 +21,5 @@ kafka:
     servers: localhost:9093
   acks: all
   key.serializer: org.apache.kafka.common.serialization.StringSerializer
-  value.serializer: orders.messaging.OrderSerializer
+  value.serializer: accounting.mesaging.PaymentPendingSerializer
   max.block.ms: 1000

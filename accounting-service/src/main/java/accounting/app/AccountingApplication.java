@@ -1,4 +1,4 @@
-package accounting;
+package accounting.app;
 
 import io.micronaut.runtime.Micronaut;
 
