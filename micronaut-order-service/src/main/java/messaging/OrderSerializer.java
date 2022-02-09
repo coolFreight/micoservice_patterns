@@ -1,4 +1,4 @@
-package orders.messaging;
+package messaging;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-public class OrderSerializer implements Serializer<FoodOrder>, Deserializer<FoodOrder> {
+public class OrderSerializer implements Serializer<JVROMessageType>, Deserializer<FoodOrder> {
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderSerializer.class);
 
     private ObjectMapper mapper =  new ObjectMapper();
@@ -26,12 +26,13 @@ public class OrderSerializer implements Serializer<FoodOrder>, Deserializer<Food
     }
 
     @Override
-    public byte[] serialize(String topic, FoodOrder order) {
+    public byte[] serialize(String topic, JVROMessageType obj) {
         try {
-            return mapper.writeValueAsBytes(order);
+            var message = new JVROMessage(mapper.writeValueAsBytes(obj), obj.getClass());
+            return mapper.writeValueAsBytes(message);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-            return new byte[0];
+            throw new RuntimeException("Invalid message type");
         }
     }
 

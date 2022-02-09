@@ -3,7 +3,7 @@ package kitchen.messaging;
 import io.micronaut.configuration.kafka.annotation.KafkaKey;
 import io.micronaut.configuration.kafka.annotation.KafkaListener;
 import io.micronaut.configuration.kafka.annotation.Topic;
-import kitchen.avro.FoodOrder;
+import kitchen.mesages.FoodOrder;
 import kitchen.domain.KitchenTicket;
 import kitchen.service.KitchenService;
 import org.slf4j.Logger;

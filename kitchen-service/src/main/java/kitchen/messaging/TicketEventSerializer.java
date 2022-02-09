@@ -1,8 +1,9 @@
-package accounting.mesaging;
+package kitchen.messaging;
 
-import accounting.avro.PaymentPendingAuthorizationEvent;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import kitchen.mesages.JVROMessage;
+import org.apache.kafka.common.header.Headers;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serializer;
 import org.slf4j.Logger;
@@ -10,13 +11,13 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-public class PaymentPendingSerializer implements Serializer<PaymentPendingAuthorizationEvent>, Deserializer<PaymentPendingAuthorizationEvent> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(PaymentPendingSerializer.class);
+public class TicketEventSerializer implements Serializer<JVROMessage>, Deserializer<JVROMessage> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(TicketEventSerializer.class);
 
     private ObjectMapper mapper =  new ObjectMapper();
 
     @Override
-    public PaymentPendingAuthorizationEvent deserialize(String topic, byte[] data) {
+    public JVROMessage deserialize(String topic, byte[] data) {
         return null;
     }
 
@@ -26,14 +27,20 @@ public class PaymentPendingSerializer implements Serializer<PaymentPendingAuthor
     }
 
     @Override
-    public byte[] serialize(String topic, PaymentPendingAuthorizationEvent order) {
+    public byte[] serialize(String topic, JVROMessage event) {
         try {
-            return mapper.writeValueAsBytes(order);
+            return mapper.writeValueAsBytes(event);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             return new byte[0];
         }
     }
+
+    @Override
+    public byte[] serialize(String topic, Headers headers, JVROMessage data) {
+        return Serializer.super.serialize(topic, headers, data);
+    }
+
 
     @Override
     public void close() {

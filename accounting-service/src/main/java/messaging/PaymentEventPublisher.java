@@ -1,8 +1,8 @@
-package accounting.mesaging;
+package messaging;
 
-import accounting.avro.PaymentAcceptedEvent;
-import accounting.avro.PaymentDeniedEvent;
-import accounting.avro.PaymentPendingAuthorizationEvent;
+import accounting.messages.PaymentAcceptedEvent;
+import accounting.messages.PaymentDeniedEvent;
+import accounting.messages.PaymentPendingAuthorizationEvent;
 import io.micronaut.configuration.kafka.annotation.KafkaClient;
 import io.micronaut.configuration.kafka.annotation.Topic;
 

@@ -1,10 +1,10 @@
 package accounting.service;
 
-import accounting.avro.PaymentAcceptedEvent;
-import accounting.avro.PaymentPendingAuthorizationEvent;
+import accounting.messages.PaymentAcceptedEvent;
+import accounting.messages.PaymentPendingAuthorizationEvent;
 import accounting.db.PaymentRepository;
 import accounting.domain.PaymentInfo;
-import accounting.mesaging.PaymentEventPublisher;
+import messaging.PaymentEventPublisher;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import org.slf4j.Logger;

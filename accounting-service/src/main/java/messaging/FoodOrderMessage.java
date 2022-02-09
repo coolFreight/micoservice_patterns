@@ -1,26 +1,21 @@
-package accounting.avro;
-
-import io.micronaut.data.annotation.Id;
-import io.micronaut.data.annotation.MappedEntity;
-import io.micronaut.data.annotation.Relation;
+package messaging;
 
 import java.util.List;
 import java.util.Objects;
 
-@MappedEntity
-public class FoodOrder {
+public class FoodOrderMessage implements JVROMessageType {
 
-    @Id
     private String orderId;
 
     private String status;
 
     private String name;
 
-    @Relation(value = Relation.Kind.ONE_TO_MANY, cascade = Relation.Cascade.PERSIST, mappedBy = "foodOrder")
-    private List<OrderItem> orderItems;
+    private List<OrderItemMessage> orderItems;
 
-    public FoodOrder(String status, String orderId, String name, List<OrderItem> orderItems) {
+    public FoodOrderMessage(){}
+
+    public FoodOrderMessage(String status, String orderId, String name, List<OrderItemMessage> orderItems) {
         this.status = status;
         this.orderId = orderId;
         this.name = name;
@@ -39,7 +34,7 @@ public class FoodOrder {
         return name;
     }
 
-    public List<OrderItem> getOrderItems() {
+    public List<OrderItemMessage> getOrderItems() {
         return orderItems;
     }
 
@@ -55,7 +50,7 @@ public class FoodOrder {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FoodOrder foodOrder = (FoodOrder) o;
+        FoodOrderMessage foodOrder = (FoodOrderMessage) o;
         return Objects.equals(orderId, foodOrder.orderId) && Objects.equals(status, foodOrder.status) && Objects.equals(name, foodOrder.name);
     }
 
@@ -63,6 +58,7 @@ public class FoodOrder {
     public int hashCode() {
         return Objects.hash(orderId, status, name);
     }
+
 
 
 }

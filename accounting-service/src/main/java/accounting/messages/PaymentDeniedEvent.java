@@ -1,4 +1,4 @@
-package accounting.avro;
+package accounting.messages;
 
 public class PaymentDeniedEvent {
 }

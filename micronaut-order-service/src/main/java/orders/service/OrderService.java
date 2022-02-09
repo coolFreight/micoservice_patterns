@@ -5,7 +5,9 @@ import orders.api.OrderRequest;
 import orders.api.FoodOrder;
 import orders.db.JdbiOrderRepository;
 import orders.api.OrderItem;
-import orders.messaging.OrderPublisher;
+import messaging.FoodOrderMessage;
+import messaging.OrderItemMessage;
+import messaging.OrderPublisher;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
@@ -35,7 +37,12 @@ public class OrderService {
                 .getOrderItems()
                 .stream()
                 .map(orderItemRequest -> new OrderItem(orderId, orderItemRequest.getId(), orderItemRequest.getName(), orderItemRequest.getQuantity())).collect(Collectors.toList()));
-        orderPublisher.publishOrder(foodOrder.getOrderId(), foodOrder);
+
+        orderPublisher.publishOrder(foodOrder.getOrderId(), new FoodOrderMessage(foodOrder.getStatus(), foodOrder.getOrderId(), foodOrder.getName(), foodOrderRequest
+                .getOrderItems()
+                .stream()
+                .map(oir -> new OrderItemMessage(orderId, oir.getId(), oir.getName(), oir.getQuantity()))
+                .collect(Collectors.toList())));
         return foodOrder;
     }
 }

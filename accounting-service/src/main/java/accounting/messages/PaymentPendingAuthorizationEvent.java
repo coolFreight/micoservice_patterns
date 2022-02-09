@@ -1,6 +1,8 @@
-package accounting.avro;
+package accounting.messages;
 
-public class PaymentPendingAuthorizationEvent {
+import messaging.JVROMessageType;
+
+public class PaymentPendingAuthorizationEvent implements JVROMessageType {
 
     private String consumerId;
     private String orderId;

@@ -22,7 +22,7 @@ kafka:
     servers: localhost:9093
   acks: all
   key.serializer: org.apache.kafka.common.serialization.StringSerializer
-  value.serializer: orders.messaging.OrderSerializer
+  value.serializer: messaging.OrderSerializer
   max.block.ms: 1000
 
 

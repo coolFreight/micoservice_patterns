@@ -1,16 +1,13 @@
-package accounting.avro;
+package messaging;
 
-import io.micronaut.data.annotation.MappedEntity;
-
-@MappedEntity
-public class OrderItem {
+public class OrderItemMessage implements JVROMessageType{
 
     private String order_id;
     private String id;
     private String name;
     private int quantity;
 
-    public OrderItem(String order_id, String id, String name, int quantity) {
+    public OrderItemMessage(String order_id, String id, String name, int quantity) {
         this.order_id = order_id;
         this.id = id;
         this.name = name;
